@@ -1,0 +1,129 @@
+# -*- coding: utf-8 -*-
+#----------------------------------------------------------------------------------------------------------------------
+#         	--=-= Инфо по работе с автотестами. =-=--
+# P.S: Пишите код, исходя из того, что все программисты, которые будут сопровождать вашу программу,
+#                                           — склонные к насилию психопаты, знающие, где вы живёте. (c) Стив Макконел
+#----------------------------------------------------------------------------------------------------------------------
+
+=================================================================
+                   --== Начало ==--
+=================================================================
+
+Что бы начать нужно:
+- поставить python >=2.6 (32-bit)
+- поставить virtual env, http://www.virtualenv.org/en/latest/
+- sudo easy_install pip (если нет virtual env)
+- установить зависимости sudo pip install -r requirements.txt
+- проверить, что работает nosetests из папки проекта
+
+Конфигурация хранится в main.cfg
+Если была добавлена новая библиотека, ее нужно добавить в зависимости проекта:  pip freeze > requirements.txt
+
+
+
+
+=================================================================
+       --== Запуск автотестов и работа с автотестами==--
+=================================================================
+
+Для запуска тестов через nose в названии тест-метода должно соответствовать определённому шаблону, а именно
+в названии присутствие слова test, например: test_temp или test_catalog_service.
+Иначе тест воспринимается как обычный метод.
+
+Пример запуска из консоли (обязательно из папки с проектом):
+1) Для запуска всех методов, начинающихся со слова test... из файла test_catalog_service.py:
+     nosetests ./tests/front_office/test_favicon_title_description.py:TestCatalogService
+
+2) Для запуска конкретного метода из файла test_catalog_service.py:
+     nosetests ./tests/worker_warehouse/test_warehouse.py:TestGetWaresFromWarehouse.test_getWaresFilter_only_user_id
+
+3) Запуск с сохранением отчета в формате xUnit:
+     nosetests ./tests/front_office/test_favicon_title_description.py --with-xunit --xunit-file=./tmp/bug_report.xml -v
+
+Info: При запуске nosetests-тестов, для того что бы Nose не перехватывал вывод в stdout,
+      следует добавить в строку запуска параметр -s.
+
+Если возникают проблемы при установке mysql-python:
+      http://mysql-python.blogspot.ru/2012/11/is-mysqldb-hard-to-install.html
+
+Docs:
+1) http://nose.readthedocs.org/en/latest/
+2) http://pythontesting.net/framework/nose/nose-introduction/
+3) Для работы с PostgreSQL нужен драйвер, для Windows его можно скачать:
+   * http://www.stickpeople.com/projects/python/win-psycopg/
+
+Info: Для работы с "колесами" (формат *.whl) необходимо  постаивть wheel
+
+=================================================================
+     --== Подключить подсветку элементов в webdriver ==--
+=================================================================
+
+# ---------------------------------------------------------------------------------------------
+# Добавить новый метод highlight в webdriver (если его нет) ...
+# и включить его в уже существующий метод find_element (или любой другой по аналогии).
+
+    def highlight(self, element):
+        """Highlights (blinks) a Selenium Webdriver element"""
+        # TODO: метод подсветки объектов формы
+        driver = element._parent
+        def apply_style(s):
+            driver.execute_script("arguments[0].setAttribute('style', arguments[1]);",
+                                  element, s)
+        original_style = element.get_attribute('style')
+        apply_style("background: yellow; border: 2px solid red;")
+        time.sleep(.2)
+        apply_style(original_style)
+
+    def find_element(self, by=By.ID, value=None):
+        """
+        'Private' method used by the find_element_by_* methods.
+
+        :Usage:
+            Use the corresponding find_element_by_* instead of this.
+
+        :rtype: WebElement
+        """
+        if not By.is_valid(by) or not isinstance(value, str):
+            raise InvalidSelectorException("Invalid locator values passed in")
+        iiii = self.execute(Command.FIND_ELEMENT, {'using': by, 'value': value})['value']
+        self.highlight(iiii)  # Подключаем подсветку проверки элементов
+        return iiii
+
+# ---------------------------------------------------------------------------------------------
+
+=================================================================
+--== Настройка Appium для тестирования мобильных приложений: ==--
+=================================================================
+
+1) Установить Android SDK
+
+2) Установить Appium (http://appium.io/)
+
+3) Добавить в переменную среды PATH следующие пути:
+    * Путь до SDK Android (C:\Users\имя пользователя\AppData\Local\Android\sdk)
+    * Путь до эмулятора Android (C:\Users\имя пользователя\AppData\Local\Android\sdk\tools)
+    * Путь до AVD (C:\Users\имя пользователя\AppData\Local\Android\sdk\platform-tools)
+    * Путь до JDK (C:\Program Files\Java\jdk1.8.0_20\bin)
+    * Путь до Appium (C:\Program Files\Appium)
+
+4) Добавить переменную среды ANDROID_HOME (C:\Users\имя пользователя\AppData\Local\Android\sdk)
+
+5) Добавить переменную среды JAVA_HOME (C:\Program Files\Java)
+
+6) Для проверки корректной настройки всех компонентов заходим:
+    C:\Program Files\Appium\node_modules\.bin\
+  и запускаем скрипт:
+   *   appium-doctor.cmd (для windows машин)
+   *   appium-doctor (для unix машин)
+   *   node appium-doctor.js (если установлена путь до Node.js)
+
+7) в файле main.cfg прописываем пути переменным:
+windows_path_android_sdk и windows_path_appium - они могут потребоваться для некоторых функций во фреймворке
+
+8) Зайдите в SDK Android и запустите SDK Manager,
+установите и обновите дополнительные компоненты (для x86: обязательно убедитесь в наличи HAXM  и акселератор эмулятора)
+
+
+
+
+

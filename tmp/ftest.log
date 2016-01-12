@@ -1,0 +1,30 @@
+---== Start testing. ==---
+2016-01-12 14:23:33,247 - ftest - INFO - logger : 50 - try to get main configuration
+2016-01-12 14:23:33,250 - ftest - INFO - logger : 50 - sections are ['default', 'frontend', 'backend', 'rabbitmq_virtual_hosts', 'rabbitmq_queue', 'repository', 'path_repository', 'thrift_variables', 'dbase_links_workers', 'system_settings', 'prefix', 'mobile']
+2016-01-12 14:23:33,252 - ftest - INFO - logger : 50 - try to get environments configuration
+2016-01-12 14:23:33,253 - ftest - INFO - logger : 50 - Environment scheme: [test1_config]
+2016-01-12 14:23:33,253 - ftest - INFO - logger : 50 - variables in env: {'db0_name': 'prod_wout_token', 'ba_login': 'demo', 'front_base_url': 'http://test.hiconversion.ru', 'db0_host': 'devil.hic', 'db0_login': 'rouser', 'db0_passwd': 'oph1Noh9Upoo', 'db0_type': 'pgsql', 'front_host': 'test.hiconversion.ru', 'ba_password': 'hicnewdemo', 'db0_port': '5432'}
+2016-01-12 14:23:33,674 - ftest - INFO - logger : 84 - 
+
+ == Preparing the test environment ==
+2016-01-12 14:23:33,674 - ftest - INFO - logger : 85 - Link Test: <class tests.new_service.test_api.TestNewAPI> 
+2016-01-12 14:23:33,676 - ftest - INFO - logger : 97 - 
+ *** The test TearDown ***
+2016-01-12 14:23:33,677 - ftest - INFO - logger : 84 - 
+
+ == Preparing the test environment ==
+2016-01-12 14:23:33,677 - ftest - INFO - logger : 85 - Link Test: <class tests.new_service.test_api.TestNewAPI> 
+2016-01-12 14:23:33,677 - ftest - INFO - logger : 97 - 
+ *** The test TearDown ***
+2016-01-12 14:23:33,678 - ftest - INFO - logger : 84 - 
+
+ == Preparing the test environment ==
+2016-01-12 14:23:33,680 - ftest - INFO - logger : 85 - Link Test: <class tests.new_service.test_api.TestNewAPI> 
+2016-01-12 14:23:33,680 - ftest - INFO - logger : 97 - 
+ *** The test TearDown ***
+2016-01-12 14:23:33,681 - ftest - INFO - logger : 84 - 
+
+ == Preparing the test environment ==
+2016-01-12 14:23:33,683 - ftest - INFO - logger : 85 - Link Test: <class tests.new_service.test_api.TestNewAPI> 
+2016-01-12 14:23:33,683 - ftest - INFO - logger : 97 - 
+ *** The test TearDown ***

@@ -1,0 +1,12 @@
+# pyautoit - only for Windows
+
+# Windows: There may be problems that need binary installation (use wheel and binary packages)
+#pika==0.9.13
+#blist
+#paramiko==1.7.4
+#pycrypto==2.6
+#psycopg2==2.5.4
+#MySQL-python==1.2.4
+
+# deprecate
+# cassandra-driver
