@@ -40,14 +40,10 @@ class MainClass(unittest.TestCase):
     # TODO: я не зря от сюда убрал эти параметры! конфигурационные параметры должны браться только через методы!!!
     ENV_BASE_URL = None
     ENV_HOST = None
-    BA_LOGIN = None
-    BA_PASSWORD = None
 
     try:
         ENV_BASE_URL = configs.config["env_info"]["front_base_url"]
         ENV_HOST = configs.config["env_info"]["front_host"]
-        BA_LOGIN = configs.config["env_info"]["ba_login"]
-        BA_PASSWORD = configs.config["env_info"]["ba_password"]
     except Exception, tx:
         service_log.put("Warning! Not found param config: %s" % str(tx))
 

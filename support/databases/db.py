@@ -10,9 +10,11 @@ from support import service_log, configs
 from support.databases.db_cassandra import ClassCassandraDriver
 from support.databases.db_elasticsearch import ClassElasticsearchConnections
 from support.databases.db_postgresql import ClassPsyCopg2
+from support.databases.db_oracle import ClassCxOracle
 from support.databases.db_redis import ClassRedis
 from support.utils.variables import TVariables
 from tests.new_service.dbase_methods.db_new_service import ClassNewApiSql
+from tests.new_service.dbase_methods.db_oracle_query import ClassOracleSql
 
 __author__ = 'Strubachev'
 
@@ -24,6 +26,7 @@ class ClassDatabasesWork():
 
     # карта сервисов и типов соответствия их с Базами данных
     sv = {"pgsql": {"new_api": [ClassNewApiSql, ClassPsyCopg2]},
+          "oraclesql": {"oracle": [ClassOracleSql, ClassCxOracle]},
           "redis": {"<redis>": [None, ClassRedis]},
           "cassandra": {"<cassandra>": [None, ClassCassandraDriver]},
           "elasticsearch": {"<elasticsearch>": [None, ClassElasticsearchConnections]}

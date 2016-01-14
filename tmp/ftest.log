@@ -1,30 +1,40 @@
 ---== Start testing. ==---
-2016-01-12 14:23:33,247 - ftest - INFO - logger : 50 - try to get main configuration
-2016-01-12 14:23:33,250 - ftest - INFO - logger : 50 - sections are ['default', 'frontend', 'backend', 'rabbitmq_virtual_hosts', 'rabbitmq_queue', 'repository', 'path_repository', 'thrift_variables', 'dbase_links_workers', 'system_settings', 'prefix', 'mobile']
-2016-01-12 14:23:33,252 - ftest - INFO - logger : 50 - try to get environments configuration
-2016-01-12 14:23:33,253 - ftest - INFO - logger : 50 - Environment scheme: [test1_config]
-2016-01-12 14:23:33,253 - ftest - INFO - logger : 50 - variables in env: {'db0_name': 'prod_wout_token', 'ba_login': 'demo', 'front_base_url': 'http://test.hiconversion.ru', 'db0_host': 'devil.hic', 'db0_login': 'rouser', 'db0_passwd': 'oph1Noh9Upoo', 'db0_type': 'pgsql', 'front_host': 'test.hiconversion.ru', 'ba_password': 'hicnewdemo', 'db0_port': '5432'}
-2016-01-12 14:23:33,674 - ftest - INFO - logger : 84 - 
+2016-01-14 10:26:19,704 - ftest - INFO - logger : 50 - try to get main configuration
+2016-01-14 10:26:19,707 - ftest - INFO - logger : 50 - sections are ['default', 'frontend', 'backend', 'rabbitmq_virtual_hosts', 'rabbitmq_queue', 'repository', 'path_repository', 'thrift_variables', 'dbase_links_workers', 'system_settings', 'prefix', 'mobile']
+2016-01-14 10:26:19,709 - ftest - INFO - logger : 50 - try to get environments configuration
+2016-01-14 10:26:19,710 - ftest - INFO - logger : 50 - Environment scheme: [mytest_config]
+2016-01-14 10:26:19,710 - ftest - INFO - logger : 50 - variables in env: {'front_base_url': 'https://mytest.letobank.ru:8443', 'db1_host': '172.18.18.60', 'db1_type': 'oraclesql', 'db1_passwd': 'user123', 'db1_login': 'TBG', 'db1_port': '1521', 'db1_name': 'VBNK', 'front_host': 'mytest.letobank.ru:8443'}
+2016-01-14 10:26:20,117 - ftest - INFO - logger : 84 - 
 
  == Preparing the test environment ==
-2016-01-12 14:23:33,674 - ftest - INFO - logger : 85 - Link Test: <class tests.new_service.test_api.TestNewAPI> 
-2016-01-12 14:23:33,676 - ftest - INFO - logger : 97 - 
- *** The test TearDown ***
-2016-01-12 14:23:33,677 - ftest - INFO - logger : 84 - 
-
- == Preparing the test environment ==
-2016-01-12 14:23:33,677 - ftest - INFO - logger : 85 - Link Test: <class tests.new_service.test_api.TestNewAPI> 
-2016-01-12 14:23:33,677 - ftest - INFO - logger : 97 - 
- *** The test TearDown ***
-2016-01-12 14:23:33,678 - ftest - INFO - logger : 84 - 
-
- == Preparing the test environment ==
-2016-01-12 14:23:33,680 - ftest - INFO - logger : 85 - Link Test: <class tests.new_service.test_api.TestNewAPI> 
-2016-01-12 14:23:33,680 - ftest - INFO - logger : 97 - 
- *** The test TearDown ***
-2016-01-12 14:23:33,681 - ftest - INFO - logger : 84 - 
-
- == Preparing the test environment ==
-2016-01-12 14:23:33,683 - ftest - INFO - logger : 85 - Link Test: <class tests.new_service.test_api.TestNewAPI> 
-2016-01-12 14:23:33,683 - ftest - INFO - logger : 97 - 
+2016-01-14 10:26:20,117 - ftest - INFO - logger : 85 - Link Test: <class tests.new_service.test_api.TestNewAPI> 
+2016-01-14 10:26:20,118 - ftest - INFO - logger : 50 - Procedure SQL-query: 
+        declare
+            XML_IN XMLTYPE;
+            XML_OUT XMLTYPE;
+            ERROR_KEY1 number;
+            ERROR_MES1 Varchar2(100);
+            ERROR_DETAIL1 Varchar2(100);
+            begin
+                XML_IN := xmltype(:in_param);
+                LT_DBO_REQUEST_API.GETAGREEMENTINFO(XML_IN, XML_OUT, ERROR_KEY1, ERROR_MES1, ERROR_DETAIL1);
+                :out_param := XML_OUT.getStringVal();
+                :err_msg := ERROR_MES1;
+                :err_det := ERROR_DETAIL1;
+            end;
+        
+2016-01-14 10:26:20,365 - ftest - INFO - logger : 50 - Open oracle connections.
+2016-01-14 10:26:20,944 - ftest - INFO - logger : 50 - Commit operation UPDATE.
+2016-01-14 10:26:20,946 - ftest - INFO - logger : 50 - Closing opened oracle connections.
+2016-01-14 10:26:20,947 - ftest - INFO - logger : 50 - Procedure SQL-query result: {'err_det': None, 'out_param': '<?xml version="1.0" encoding="windows-1251"?><GetAgreementInfoOut><AgreementDetails><AgreeId>10011948</AgreeId><MacroProduct>POS - \xea\xf0\xe5\xe4\xe8\xf2</MacroProduct><MacroProdType>VTB_POS</MacroProdType><ProductName>\xdf \xe2\xfb\xe1\xe8\xf0\xe0\xfe 10</ProductName><ProductType>VTB_EXP_10_10_10</ProductType><AccountNo>40817810700120000969</AccountNo><Currency>RUR</Currency><Status>2</Status><OpenDate>2012-11-06</OpenDate><CloseDate>2014-09-01</CloseDate><PlanDate>2014-06-06</PlanDate><IsLimitExpired>1</IsLimitExpired><DepositOpenDate>2012-11-06</DepositOpenDate><WaitPeriodDate>2012-11-05</WaitPeriodDate><FirstSum>34670.00</FirstSum><IsReplenish>0</IsReplenish><IsPartWithdraw>0</IsPartWithdraw><MinRestSum>3000.00</MinRestSum><DepositLim>0.00</DepositLim><AvailableLim>0.00</AvailableLim><Limit>34670.00</Limit><OriginalLimit>34670.00</OriginalLimit><SsudLim>0.00</SsudLim><isOver>0</isOver><LastChange>2014-09-04T17:26:42</LastChange><LastOperation>2014-09-04T17:26:40</LastOperation><LastScheduleChange>2014-12-15T01:36:25</LastScheduleChange><IsLocalCardAllowed>0</IsLocalCardAllowed><MonDebt>0.00</MonDebt><IsLimitBlocked>0</IsLimitBlocked><IsOnline>0</IsOnline><MonKomms></MonKomms></AgreementDetails><Services><ServiceInfo><ServiceType>SkipPay</ServiceType><MinVal>0.00</MinVal><MaxVal>0.00</MaxVal><Period>ONE</Period><Status>\xcd</Status></ServiceInfo><ServiceInfo><ServiceType>ChangePayDate</ServiceType><MinVal>90.00</MinVal><MaxVal>90.00</MaxVal><Period>ONE</Period><Status>\xcd</Status></ServiceInfo><ServiceInfo><ServiceType>EasyPay</ServiceType><Period>ONE</Period><Status>\xcd</Status></ServiceInfo><ServiceInfo><ServiceType>ReducePay</ServiceType><Period>ONE</Period><Status>\xcd</Status></ServiceInfo><ServiceInfo><ServiceType>PIN</ServiceType><Status>\xcd</Status></ServiceInfo><ServiceInfo><ServiceType>PNT</ServiceType><Status>\xcd</Status></ServiceInfo><ServiceInfo><ServiceType>Repayment</ServiceType><Status>\xcd</Status></ServiceInfo></Services></GetAgreementInfoOut>', 'err_msg': None}
+2016-01-14 10:26:20,973 - ftest - INFO - logger : 50 - Params for assertEqual: (None, None), {}
+2016-01-14 10:26:20,973 - ftest - INFO - logger : 50 - Params for assertEqual: (None, None), {}
+2016-01-14 10:26:20,974 - ftest - INFO - logger : 50 - Params for assertNotEqual: ('<?xml version="1.0" encoding="windows-1251"?><GetAgreementInfoOut><AgreementDetails><AgreeId>10011948</AgreeId><MacroProduct>POS - \xea\xf0\xe5\xe4\xe8\xf2</MacroProduct><MacroProdType>VTB_POS</MacroProdType><ProductName>\xdf \xe2\xfb\xe1\xe8\xf0\xe0\xfe 10</ProductName><ProductType>VTB_EXP_10_10_10</ProductType><AccountNo>40817810700120000969</AccountNo><Currency>RUR</Currency><Status>2</Status><OpenDate>2012-11-06</OpenDate><CloseDate>2014-09-01</CloseDate><PlanDate>2014-06-06</PlanDate><IsLimitExpired>1</IsLimitExpired><DepositOpenDate>2012-11-06</DepositOpenDate><WaitPeriodDate>2012-11-05</WaitPeriodDate><FirstSum>34670.00</FirstSum><IsReplenish>0</IsReplenish><IsPartWithdraw>0</IsPartWithdraw><MinRestSum>3000.00</MinRestSum><DepositLim>0.00</DepositLim><AvailableLim>0.00</AvailableLim><Limit>34670.00</Limit><OriginalLimit>34670.00</OriginalLimit><SsudLim>0.00</SsudLim><isOver>0</isOver><LastChange>2014-09-04T17:26:42</LastChange><LastOperation>2014-09-04T17:26:40</LastOperation><LastScheduleChange>2014-12-15T01:36:25</LastScheduleChange><IsLocalCardAllowed>0</IsLocalCardAllowed><MonDebt>0.00</MonDebt><IsLimitBlocked>0</IsLimitBlocked><IsOnline>0</IsOnline><MonKomms></MonKomms></AgreementDetails><Services><ServiceInfo><ServiceType>SkipPay</ServiceType><MinVal>0.00</MinVal><MaxVal>0.00</MaxVal><Period>ONE</Period><Status>\xcd</Status></ServiceInfo><ServiceInfo><ServiceType>ChangePayDate</ServiceType><MinVal>90.00</MinVal><MaxVal>90.00</MaxVal><Period>ONE</Period><Status>\xcd</Status></ServiceInfo><ServiceInfo><ServiceType>EasyPay</ServiceType><Period>ONE</Period><Status>\xcd</Status></ServiceInfo><ServiceInfo><ServiceType>ReducePay</ServiceType><Period>ONE</Period><Status>\xcd</Status></ServiceInfo><ServiceInfo><ServiceType>PIN</ServiceType><Status>\xcd</Status></ServiceInfo><ServiceInfo><ServiceType>PNT</ServiceType><Status>\xcd</Status></ServiceInfo><ServiceInfo><ServiceType>Repayment</ServiceType><Status>\xcd</Status></ServiceInfo></Services></GetAgreementInfoOut>', None), {}
+2016-01-14 10:26:20,976 - ftest - INFO - logger : 50 - Select user data: SELECT * FROM tbg.crp_agreements WHERE accountid = 10011948
+2016-01-14 10:26:20,976 - ftest - INFO - logger : 50 - SQL-query: SELECT * FROM tbg.crp_agreements WHERE accountid = 10011948
+2016-01-14 10:26:21,099 - ftest - INFO - logger : 50 - Open oracle connections.
+2016-01-14 10:26:21,111 - ftest - INFO - logger : 50 - Fetchall rows.
+2016-01-14 10:26:21,112 - ftest - INFO - logger : 50 - Closing opened oracle connections.
+2016-01-14 10:26:21,112 - ftest - INFO - logger : 50 - SQL-query result: [{'SUPER_RATE_DATE': None, 'GRACE_PERIOD_BEGIN': None, 'EDU_END_GRACE': None, 'STMTDATEINC': None, 'STAUTHORIZATION': None, 'ACTIVATION_DATE': datetime.datetime(2012, 11, 6, 0, 0), 'STAGE_CODE': 'INIT', 'REFINANCE': None, 'REFINANCE_DATE': None, 'IS_ZEROISED_UNL': 'N', 'TEMPLATECODE': None, 'CRLIMIT_FOR_COMISS': None, 'OVERDUE_START_DATE_INS': None, 'AGREEMENT_ID': 7307, 'PARENT_AGREEMENT': None, 'STFINANCIAL': None, 'OVERDUE_START_DATE_SR': None, 'MK_AUTH_ACCT_NO': None, 'CURACC_AGREENO': None, 'CREDIT_COMMITTEE': 'N', 'BR_AGR_ID': None, 'FINAL_BILLING_DATE': None, 'PARTIAL_EARLY_REP_DATE': None, 'CRLIMIT_PURE': None, 'INDVL_INT_RATES_F': 39.9, 'EXCERPT_DATE': None, 'TRXNFEEPROFDESCR': None, 'SUPER_RATE_STOP_DATE': None, 'MAIN_PSYS_TYPE': None, 'CURRENCY': 'RUR', 'REWARDPROFDESCR': None, 'BKI_EXPORT': None, 'CHANGE_PIN_NUM': 0, 'CUSTOMERID': None, 'OVERDUE_START_DATE': None, 'EDU_GRACE_TERM_ADD': None, 'MODIFIED': None, 'NEXT_DUE_DATE': datetime.datetime(2014, 9, 6, 0, 0), 'SOFT_RESTR_ON_DATE': None, 'CREDIT_COMMITTEE_DATE': None, 'FINAL_BILLING_ENABLE': 'N', 'TT_ID': '3459', 'DQ_CATEGORY_INS': None, 'CLOSE_APPL_DATE': None, 'BKI_EXPORT_PREV': None, 'COMMISSPRODSUM': None, 'PRODUCTNAME': 'VTB_EXP_10_10_10', 'IS_BANK_EMPLOYEE': None, 'EDU_MAX_COUNT_TRANCHES': None, 'LAST_OVERLIM_DATE': None, 'OVERDRAFT_START_DATE_SR': None, 'EXT_LIMPORTID': None, 'MIN_PAY': 3860, 'FIRST_FIN_OPER_DATE': datetime.datetime(2012, 11, 6, 0, 0), 'CLOSE_DATE': datetime.datetime(2014, 9, 1, 0, 0), 'DQ_CATEGORY': '1', 'BANKSORTCODE': None, 'STGENERAL': 'CLSB', 'PERSONID': None, 'BKI': 'Y', 'NEXT_ANNUAL_DATE': None, 'IS_TRANSACTION_SR': None, 'ADD_MIN_OVD_RESTR': None, 'MIN_PAY_F': 1720, 'OVERDRAFT_START_DATE': None, 'TO_AGR_ID': 1910, 'BKI_DATE': None, 'PROLONG_COUNT': None, 'SYS_ID': 'MK', 'OVERDUE_START_DATE_OTH': None, 'GRACE_PERIOD_END': None, 'SIEBEL_ACCOUNTNUMBER': '10011948', 'NEXT_PAY_DATE': None, 'SUPER_RATE_START_DATE': None, 'EXT_DBPORTID': None, 'STMTNEXTDATE': datetime.datetime(2014, 9, 6, 0, 0), 'BRANCH': 'VTB', 'ALLOCPROFDESCR': None, 'BILL_DAY': 6, 'OFF_OVD_DATE': None, 'IS_TRANSACTION': None, 'PROLONG_LAST_DATE': None, 'CREDITLIMIT': 34670.0, 'EDU_MAX_SUMM_TRANCHES': None, 'FEEPROFDESCR': None, 'TERM': None, 'RESTRUCT_AGREEMENT': None, 'OVERDUE_CYCLES_SR': None, 'SOFT_RESTR_ON': 'N', 'AGR_PROD_TYPE': 'VTB_POS', 'STMT_ENABLE': 'N', 'STATUS': 'C', 'PROLONG_IN_END': None, 'STAGE_DATE': None, 'GRACEPERIOD': None, 'REGISTRATION_DATE': datetime.datetime(2012, 11, 6, 0, 0), 'PRE_CLOSED_DATE': datetime.datetime(2014, 6, 17, 0, 0), 'DEBT_LETTER_ENABLE': 'N', 'ALGORITM': 0, 'ACCOUNTID': 10011948, 'EDU_GRACE_TERM': None, 'STMT_ROUTE': None, 'OVERDUE_CYCLES': 0, 'CLOSE_AGREENO': None, 'OPEN_DATE': datetime.datetime(2012, 11, 6, 0, 0), 'MAIN_CLIENT_ID': 18470}]
+2016-01-14 10:26:21,130 - ftest - INFO - logger : 97 - 
  *** The test TearDown ***

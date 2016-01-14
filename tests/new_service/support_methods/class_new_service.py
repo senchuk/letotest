@@ -10,7 +10,7 @@ import random
 import time
 from support import service_log
 from support.class_main import MainClass
-from tests.new_service.dbase_methods.db_new_service import ClassGetNewApiSql
+from tests.new_service.dbase_methods.db_oracle_query import ClassGetOracleSql
 import requests
 import datetime
 
